@@ -5,26 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"  defer></script>
+    <script src="script2.js"  defer></script>
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <div class="game-board">
-        <div class="row1">
-            <div class="col1"></div>
-            <div class="col2"></div>
-            <div class="col3"></div>
+    <div class="container">
+      <div class="players">
+        <div id="player1">
+          <div class="player-name">Mohammad</div>
+          <div class="player-mark">X</div>
         </div>
-        <div class="row2">
-            <div class="col1"></div>
-            <div class="col2"></div>
-            <div class="col3"></div>
+        <div id="player2">
+          <div class="player-name">Pooya</div>
+          <div class="player-mark">O</div>
         </div>
-        <div class="row3">
-            <div class="col1"></div>
-            <div class="col2"></div>
-            <div class="col3"></div>
+      </div>
+      <div class="tic-board">
+        <div class="tic">
+          <div>Tic</div>
+          <div>Tac</div>
+          <div>Toe</div>
         </div>
+        <div class="game-board" id="game-board">
+          <div class="spot1"></div>
+          <div class="spot2"></div>
+          <div class="spot3"></div>
+          <div class="spot4"></div>
+          <div class="spot5"></div>
+          <div class="spot6"></div>
+          <div class="spot7"></div>
+          <div class="spot8"></div>
+          <div class="spot9"></div>
+        </div>
+      </div>
+      <div class="start"><button class="start">Start</button></div>
     </div>
 </body>
 </html>
