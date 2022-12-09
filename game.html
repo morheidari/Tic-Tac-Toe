@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script2.js"  defer></script>
+    <script src="script.js"  defer></script>
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
     <div class="container">
       <div class="players">
-        <div id="player1">
-          <div class="player-name">Mohammad</div>
+        <div id="player1" class="player">
+          <div class="player-name" id="player-1">Player One</div>
           <div class="player-mark">X</div>
         </div>
-        <div id="player2">
-          <div class="player-name">Pooya</div>
+        <div id="player2" class="player">
+          <div class="player-name" id="player-2">Player Two</div>
           <div class="player-mark">O</div>
         </div>
       </div>
@@ -39,6 +39,16 @@
         </div>
       </div>
       <div class="start"><button class="start">Start</button></div>
+    </div>
+    <div class="congratulation">
+      winner
+    </div>
+    <div class="cover">
+      <div class="ask-name">
+        <div><label for="name">player name is :</label></div>
+        <div class="name"><input type="text" name="name" id="name"></div>
+        <div><button type="submit" class="submit-name">Submit</button></div>
+      </div>
     </div>
 </body>
 </html>

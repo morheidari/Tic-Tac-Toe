@@ -12,8 +12,9 @@ const gameBoard = (function(){
 function Player(){
     
     playerMark = "X"
-    
-    return  {playerMark};
+    let playerName = "";
+
+    return  {playerMark, playerName};
 }
 
 playerOne = Player();
@@ -72,11 +73,11 @@ const displayController = (function(){
     function gameresult(){
         result = "";
         for(let i=0; i<3; i++){
-            if(gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+1] && gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+2]){
+            if((gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+1]) && (gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+2])){
                 result = gameBoard.gameboard[3*i];
                 break;
             }
-            else if(gameBoard.gameboard[i] == gameBoard.gameboard[i+3] && gameBoard.gameboard[i] == gameBoard.gameboard[i+6]){
+            else if((gameBoard.gameboard[i] == gameBoard.gameboard[i+3]) && (gameBoard.gameboard[i] == gameBoard.gameboard[i+6])){
                 result = gameBoard.gameboard[i];
                 break;
             }
@@ -91,7 +92,7 @@ const displayController = (function(){
             result = 'draw';
         }
         if(result != ""){
-            alert(result);
+            congwinner();
             reset();
             board.removeEventListener('click', write);
         }
@@ -104,6 +105,22 @@ const displayController = (function(){
         gameBoard.gameboard = ["","","","","","","","",""];
     }
 
+    function congwinner(){
+        let cong = document.querySelector(".congratulation");
+        cong.style.display = "flex";
+        if(result == "X"){
+            cong.textContent = playerOne.playerName + " is winner!"
+        }
+        else if(result == "O"){
+            cong.textContent = playerTwo.playerName + " is winner!"
+        }
+        else if(result == "draw"){
+            cong.textContent = "that's a draw!"
+        }
+        setTimeout(() => {cong.style.display = "none"}, 3500);
+    }
+
+
     return {displaygameboard, start};
 })();
 
@@ -113,3 +130,44 @@ startBtn.addEventListener("click", e => {
     displayController.start();
     e.target.textContent ="Restart";
 });
+
+const playerName = Array.from(document.querySelectorAll(".player-name"));
+const cover = document.querySelector(".cover")
+const submitBtn = document.querySelector(".submit-name");
+const input = document.querySelector("input");
+const askNamePage = document.querySelector(".ask-name")
+let playerFlag;
+
+
+// changing players name by users
+
+playerName.forEach(p => {
+    p.addEventListener("click", e => {
+        cover.style.display = "flex";
+        playerFlag = e.target ;
+    })
+})
+
+
+cover.addEventListener("click", e => {
+    if(e.target == cover){
+        cover.style.display = "none";
+    }
+})
+
+
+submitBtn.addEventListener("click", e => {
+    if(playerFlag.id[7] == 1){
+        let Pname = input.value != "" ? input.value : "Player One";
+        playerOne.playerName = Pname;
+        playerFlag.textContent = Pname;
+    }
+    else if(playerFlag.id[7] == 2){
+        let Pname = input.value != "" ? input.value : "Player Two";
+        playerTwo.playerName = Pname;
+        playerFlag.textContent = Pname;
+    }
+    cover.style.display = "none";
+    e.preventDefault()
+})
+
