@@ -19,6 +19,8 @@ function Player(){
 
 playerOne = Player();
 playerTwo = Player();
+playerOne.playerName = "Player One";
+playerTwo.playerName = "Player Two";
 playerTwo.playerMark = "O";
 
 // Display Controller object
@@ -73,15 +75,23 @@ const displayController = (function(){
     function gameresult(){
         result = "";
         for(let i=0; i<3; i++){
-            if((gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+1]) && (gameBoard.gameboard[3*i] == gameBoard.gameboard[3*i+2])){
-                result = gameBoard.gameboard[3*i];
+            if((gameBoard.gameboard[3*i] == "X") && (gameBoard.gameboard[3*i+1] == "X") && gameBoard.gameboard[3*i+2] == "X"){
+                result = "X";
                 break;
             }
-            else if((gameBoard.gameboard[i] == gameBoard.gameboard[i+3]) && (gameBoard.gameboard[i] == gameBoard.gameboard[i+6])){
-                result = gameBoard.gameboard[i];
+            else if((gameBoard.gameboard[3*i] == "O") && (gameBoard.gameboard[3*i+1] == "O") && gameBoard.gameboard[3*i+2] == "O"){
+                result = "O";
                 break;
             }
-        } 
+            else if((gameBoard.gameboard[i] == "X") && (gameBoard.gameboard[i+6]) == "X" && gameBoard.gameboard[i+3] == "X"){
+                result = "X";
+                break;
+            }
+            else if((gameBoard.gameboard[i] == "O") && (gameBoard.gameboard[i+6]) == "O" && gameBoard.gameboard[i+3] == "O"){
+                result = "O";
+                break;
+            }
+        }
         if(gameBoard.gameboard[0]==gameBoard.gameboard[4]&&gameBoard.gameboard[0]==gameBoard.gameboard[8]){
             result = gameBoard.gameboard[0];
         }
@@ -121,7 +131,7 @@ const displayController = (function(){
     }
 
 
-    return {displaygameboard, start};
+    return {displaygameboard, start, result};
 })();
 
 const startBtn = document.querySelector(".start");
